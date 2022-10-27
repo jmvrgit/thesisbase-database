@@ -1,0 +1,20 @@
+---
+version: "2.1"
+services:
+  mariadb:
+    image: lscr.io/linuxserver/mariadb:latest
+    container_name: mariadb
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - MYSQL_ROOT_PASSWORD=thesispassword
+      - TZ=Asia/Manila
+      - MYSQL_DATABASE=thesisdb
+      - MYSQL_USER=root
+      - MYSQL_PASSWORD=thesispassword
+      - REMOTE_SQL=https://raw.githubusercontent.com/jmvrgit/thesisbase-database/main/thesisdb.sql
+    volumes:
+      - /var/thesis/mysql:/config
+    ports:
+      - 3306:3306
+    restart: unless-stopped
