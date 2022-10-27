@@ -12,7 +12,7 @@ services:
       - MYSQL_DATABASE=thesisdb
       - MYSQL_USER=root
       - MYSQL_PASSWORD=thesispassword
-	  - REMOTE_SQL=./thesisdb.sql
+	  - REMOTE_SQL=https://raw.githubusercontent.com/jmvrgit/thesisbase-database/main/thesisdb.sql
     volumes:
       - /var/thesis/mysql:/config
     ports:
