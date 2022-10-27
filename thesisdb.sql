@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 27, 2022 at 05:37 PM
+-- Generation Time: Oct 27, 2022 at 06:02 PM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 7.4.29
 
@@ -24,61 +24,65 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Table structure for table `data`
+-- Table structure for table `t_node`
 --
 
-CREATE TABLE `data` (
-  `id` int(11) NOT NULL,
-  `Temperature` float NOT NULL,
-  `Humidity` float NOT NULL,
-  `Date` date NOT NULL
+CREATE TABLE `t_node` (
+  `nodeUID` varchar(8) NOT NULL,
+  `nodeName` varchar(32) NOT NULL,
+  `nodeField1` varchar(32) NOT NULL,
+  `nodeField2` varchar(32) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `users`
+-- Table structure for table `t_node_data`
 --
 
-CREATE TABLE `users` (
-  `username` varchar(12) NOT NULL,
+CREATE TABLE `t_node_data` (
+  `nodeUID` varchar(8) NOT NULL,
+  `Voltage` double NOT NULL,
+  `Ampere` double NOT NULL,
+  `RealPower` double NOT NULL,
+  `datetime` datetime NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `t_user`
+--
+
+CREATE TABLE `t_user` (
+  `username` varchar(16) NOT NULL,
   `password` varchar(32) NOT NULL,
-  `role` varchar(32) NOT NULL,
-  `contact` varchar(64) NOT NULL
+  `email` varchar(64) NOT NULL,
+  `role` varchar(16) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `users`
+-- Dumping data for table `t_user`
 --
 
-INSERT INTO `users` (`username`, `password`, `role`, `contact`) VALUES
-('root', 'thesispassword', 'admin', 'rjonmarco@gmail.com');
+INSERT INTO `t_user` (`username`, `password`, `email`, `role`) VALUES
+('root', 'thesispassword', 'rjonmarco@gmail.com', 'administrator');
 
 --
 -- Indexes for dumped tables
 --
 
 --
--- Indexes for table `data`
+-- Indexes for table `t_node`
 --
-ALTER TABLE `data`
-  ADD PRIMARY KEY (`id`);
+ALTER TABLE `t_node`
+  ADD PRIMARY KEY (`nodeUID`);
 
 --
--- Indexes for table `users`
+-- Indexes for table `t_user`
 --
-ALTER TABLE `users`
+ALTER TABLE `t_user`
   ADD PRIMARY KEY (`username`);
-
---
--- AUTO_INCREMENT for dumped tables
---
-
---
--- AUTO_INCREMENT for table `data`
---
-ALTER TABLE `data`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
